@@ -12,7 +12,7 @@ Ask questions about any web page using GenAI.
 1. **Run your FastAPI backend:**
 
    ```
-   uvicorn webpagereader.ChromeReader.backend_website:app --reload
+   uvicorn ChromeReader.fast_api_integration:app --reload
    ```
 
 2. **Update the backend URL in `popup.js` if needed (default: `http://localhost:8000/scrape`).**
