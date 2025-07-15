@@ -70,7 +70,7 @@ prompt = PromptTemplate(
 input_variables=['context', 'Question']
     )
 
-model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key="AIzaSyCYNjAij0cnQYTfOC4YjvNq3ZbqhZCtL_Q")
+model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key="AIzaSyxxxxxxYjvNq3ZbqhZCtL_Q")
 
 messages = [
         SystemMessage(content="You are a general-purpose language model that helps users with their queries. If the user greets you (e.g., says 'hi', 'hello', etc.), greet them warmly and politely in return. If the user tries to chat casually or go off-topic, acknowledge it briefly in a friendly way so you don’t seem rude, then gently redirect the conversation back to the main topic or context. Be helpful, conversational, and professional—but not overly robotic.")
