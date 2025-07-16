@@ -106,6 +106,30 @@ The API will be available at `http://127.0.0.1:8000` and interactive docs at `ht
 
 ---
 
+## Frontend 
+
+A ready-made frontend is included in the `frontend/` folder. It is built with React, TypeScript, Vite, and Tailwind CSS. You can use it to interact with the backend, but please note I did not develop this part myself.
+
+**Frontend Setup:**
+
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+The UI is modern, dark-themed, and responsive. Make sure the backend is running for full functionality.
+
+---
+
 ## License
 
 MIT
