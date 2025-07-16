@@ -49,7 +49,6 @@ const InputSection: React.FC<InputSectionProps> = ({ onSendMessage }) => {
 
   return (
     <div className="p-6 border-t border-apple-gray-200 bg-white/50 backdrop-blur-sm">
-    <div className="p-6 border-t border-dark-200 bg-dark-100/30 backdrop-blur-sm">
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* URL Input */}
         <div className="relative">
@@ -120,7 +119,3 @@ const InputSection: React.FC<InputSectionProps> = ({ onSendMessage }) => {
     </div>
   );
 };
-
-export default InputSection;
-  )
-}
