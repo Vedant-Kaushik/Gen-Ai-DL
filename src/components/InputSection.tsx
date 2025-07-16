@@ -122,3 +122,5 @@ const InputSection: React.FC<InputSectionProps> = ({ onSendMessage }) => {
 };
 
 export default InputSection;
+  )
+}

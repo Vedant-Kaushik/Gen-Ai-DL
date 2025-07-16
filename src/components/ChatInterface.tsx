@@ -102,3 +102,5 @@ const ChatInterface: React.FC = () => {
 };
 
 export default ChatInterface;
+  )
+}
