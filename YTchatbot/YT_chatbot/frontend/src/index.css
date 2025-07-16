@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    background-color: #000000;
+    color: #FFFFFF;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-dark-50/90 backdrop-blur-xl border border-dark-200/30;
+  }
+  
+  .apple-button {
+    @apply bg-apple-blue text-white font-medium rounded-xl px-6 py-3 transition-all duration-200 hover:bg-blue-600 active:scale-95 shadow-lg hover:shadow-xl;
+  }
+  
+  .apple-input {
+    @apply w-full px-4 py-3 bg-dark-100 border border-dark-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-apple-blue focus:border-transparent transition-all duration-200 placeholder-dark-400 text-white;
+  }
+  
+  .message-bubble {
+    @apply max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-sm animate-slide-up;
+  }
+  
+  .user-message {
+    @apply bg-apple-blue text-white ml-auto;
+  }
+  
+  .bot-message {
+    @apply bg-dark-200 text-dark-800 mr-auto;
+  }
+}
