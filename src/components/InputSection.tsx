@@ -119,3 +119,6 @@ const InputSection: React.FC<InputSectionProps> = ({ onSendMessage }) => {
     </div>
   );
 };
+
+
+export default InputSection
