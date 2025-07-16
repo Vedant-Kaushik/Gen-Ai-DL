@@ -78,8 +78,11 @@ const ChatInterface: React.FC = () => {
         <div className="flex flex-col h-full">
           <div className="glass-effect rounded-2xl flex-1 flex flex-col overflow-hidden">
             <div className="p-6 border-b border-apple-gray-200">
+            <div className="p-6 border-b border-dark-200">
               <h2 className="text-lg font-semibold text-apple-gray-900">Chat with Video</h2>
+              <h2 className="text-lg font-semibold text-white">Chat with Video</h2>
               <p className="text-sm text-apple-gray-600 mt-1">
+              <p className="text-sm text-dark-500 mt-1">
                 Enter a YouTube URL and ask questions about the video content
               </p>
             </div>

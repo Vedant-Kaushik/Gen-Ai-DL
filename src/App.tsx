@@ -4,7 +4,7 @@ import Header from './components/Header';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-apple-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-black to-dark-50">
       <Header />
       <ChatInterface />
     </div>

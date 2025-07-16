@@ -21,10 +21,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl }) => {
         <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mb-6 shadow-lg">
           <Play className="w-10 h-10 text-white ml-1" />
         </div>
-        <h3 className="text-xl font-semibold text-apple-gray-900 mb-2">
+        <h3 className="text-xl font-semibold text-white mb-2">
           No Video Selected
         </h3>
-        <p className="text-apple-gray-600 max-w-sm">
+        <p className="text-dark-500 max-w-sm">
           Enter a YouTube URL in the chat to start watching and asking questions about the video
         </p>
       </div>
@@ -34,13 +34,13 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl }) => {
   if (!embedUrl) {
     return (
       <div className="glass-effect rounded-2xl p-8 h-full flex flex-col items-center justify-center text-center">
-        <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
-          <ExternalLink className="w-8 h-8 text-red-500" />
+        <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mb-4">
+          <ExternalLink className="w-8 h-8 text-red-400" />
         </div>
-        <h3 className="text-lg font-semibold text-apple-gray-900 mb-2">
+        <h3 className="text-lg font-semibold text-white mb-2">
           Invalid YouTube URL
         </h3>
-        <p className="text-apple-gray-600">
+        <p className="text-dark-500">
           Please enter a valid YouTube video URL
         </p>
       </div>
@@ -60,11 +60,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoUrl }) => {
         />
       </div>
       
-      <div className="p-4 bg-white/50 backdrop-blur-sm">
+      <div className="p-4 bg-dark-100/50 backdrop-blur-sm">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse-subtle"></div>
-            <span className="text-sm font-medium text-apple-gray-700">Video Loaded</span>
+            <span className="text-sm font-medium text-dark-600">Video Loaded</span>
           </div>
           
           <a
