@@ -7,11 +7,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+      Roboto, sans-serif;
     background-color: #000000;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 }
 
@@ -19,24 +20,40 @@
   .glass-effect {
     @apply bg-dark-50/90 backdrop-blur-xl border border-dark-200/30;
   }
-  
+
   .apple-button {
-    @apply bg-apple-blue text-white font-medium rounded-xl px-6 py-3 transition-all duration-200 hover:bg-blue-600 active:scale-95 shadow-lg hover:shadow-xl;
+    @apply bg-dark-500 text-black font-semibold rounded-xl px-6 py-3 transition-all duration-200 hover:bg-blue-600 active:scale-95 shadow-lg hover:shadow-xl;
   }
-  
+
   .apple-input {
-    @apply w-full px-4 py-3 bg-dark-100 border border-dark-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-apple-blue focus:border-transparent transition-all duration-200 placeholder-dark-400 text-white;
+    @apply w-full px-4 py-3 bg-[#1a1a1a] border border-[#444] rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-white placeholder-gray-400;
   }
-  
+
   .message-bubble {
-    @apply max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-sm animate-slide-up;
+    @apply max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-sm animate-slide-up bg-dark-100;
   }
-  
+
   .user-message {
     @apply bg-apple-blue text-white ml-auto;
   }
-  
+
   .bot-message {
     @apply bg-dark-200 text-dark-800 mr-auto;
   }
+
+  .chat-input-section {
+    @apply bg-[#121212] border-t border-[#2a2a2a];
+  }
+
+  .chat-suggestion {
+    @apply bg-[#2a2a2a] text-white rounded-full px-4 py-2 text-sm font-medium hover:bg-[#3a3a3a] transition;
+  }
+}
+
+.chat-hint-container {
+  @apply bg-[#18181B] border border-[#2a2a2a] rounded-xl px-4 py-3 mt-4;
+}
+
+.chat-hint-label {
+  @apply text-dark-900 text-sm font-bold tracking-wide mb-2;
 }
