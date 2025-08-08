@@ -1,41 +1,95 @@
 import streamlit as st
-from langchain.schema import HumanMessage, AIMessage
-from backend_chatmodel import graph
-st.title(" :blue[Chatbot]")
-st.subheader("Built on :blue[LangGraph] ",divider=True)
-# Initialize or retrieve session state
-if "messages" not in st.session_state:
-    st.session_state["messages"] = []
+import backend_chatmodel as backend
+from langchain_core.messages import HumanMessage
+import uuid
 
-for message in st.session_state['messages']:
-    if isinstance(message, HumanMessage):
-        role = "user"
-        avatar = "🧑‍💻"  
-    else:
-        role = "AI"
-        avatar = "🤖"  
+# *********************************** Utility Functions ***********************************
 
-    with st.chat_message(role, avatar=avatar):
-        st.text(message.content)
+def generate_thread_id():
+    return str(uuid.uuid4())
 
-# Input from user
-user_input = st.chat_input("Say something")
+def reset_chat():
+    thread_id = generate_thread_id()
+    st.session_state['thread_id'] = thread_id
+    add_thread(thread_id)
+    st.session_state['message_history'] = []
 
-# If input is received
+def add_thread(thread_id):
+    if thread_id not in st.session_state['chat_threads']:
+        st.session_state['chat_threads'].append(thread_id)
+
+def load_conversation(thread_id):
+    try:
+        messages = backend.chatbot.get_state(config={'configurable': {'thread_id': thread_id}}).values['messages']
+        temp_messages = []
+        for msg in messages:
+            role = 'user' if isinstance(msg, HumanMessage) else 'assistant'
+            temp_messages.append({'role': role, 'content': msg.content})
+        return temp_messages
+    except Exception as e:
+        return []
+
+
+# *********************************** Session State Setup ***********************************
+
+if 'message_history' not in st.session_state:
+    st.session_state['message_history'] = []
+
+if 'thread_id' not in st.session_state:
+    st.session_state['thread_id'] = generate_thread_id()
+
+if 'chat_threads' not in st.session_state:
+    st.session_state['chat_threads'] = []
+
+add_thread(st.session_state['thread_id'])
+
+
+# *********************************** Sidebar UI ***********************************
+
+st.sidebar.title('LangGraph Chatbot')
+
+if st.sidebar.button('New Chat'):
+    reset_chat()
+
+st.sidebar.header('My Conversations')
+
+for thread_id in st.session_state['chat_threads'][::-1]:
+    if st.sidebar.button(str(thread_id)):
+        st.session_state['thread_id'] = thread_id
+        st.session_state['message_history'] = load_conversation(thread_id)
+
+
+# *********************************** Main UI ***********************************
+
+st.title("Chatbot\nBuilt on LangGraph")
+
+# Display message history
+if not st.session_state['message_history']:
+    st.markdown("**No messages to display.**")
+else:
+    for message in st.session_state['message_history']:
+        with st.chat_message(message['role']):
+            st.text(message['content'])
+
+# Input box
+user_input = st.chat_input("Type here...")
+
 if user_input:
-    # Display user message
-    with st.chat_message("user",avatar="🧑‍💻"):
+    # Show user message immediately
+    st.session_state['message_history'].append({'role': 'user', 'content': user_input})
+    with st.chat_message("user"):
         st.text(user_input)
-    st.session_state['messages'].append(HumanMessage(content=user_input))
 
-    # Build and invoke the workflow
-    workflow = graph()
-    config = {"configurable": {"thread_id": "1"}}
-    state = {"messages": st.session_state['messages']}
-    result = workflow.invoke(state, config=config)
+    # Call LangGraph backend
+    CONFIG = {'configurable': {'thread_id': st.session_state['thread_id']}}
+    with st.chat_message("assistant"):
+        ai_response = st.write_stream(
+            chunk.content for chunk, _ in backend.chatbot.stream(
+                {"messages": [HumanMessage(content=user_input)]},
+                config=CONFIG,
+                stream_mode="messages"
+            )
+        )
 
-    # Get AI response and display
-    ai_response = result["messages"][-1].content
-    st.session_state['messages'].append(AIMessage(content=ai_response))
-    with st.chat_message("AI",avatar = "🤖"):
-        st.text(ai_response)
+    # Append AI response
+    st.session_state['message_history'].append({'role': 'assistant', 'content': ai_response})
