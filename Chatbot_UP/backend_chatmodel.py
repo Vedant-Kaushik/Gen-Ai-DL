@@ -40,7 +40,7 @@ def graph():
 def chatting():
     workflow=graph()
     while True:
-        textinput=input()
+        textinput=input("ask anything = ")
         if textinput.strip().lower() in['bye','exit']:
             return 'Goodbye!  Have a great day.'
         initial_state = {
@@ -51,7 +51,10 @@ def chatting():
         ans=workflow.invoke(initial_state,config=config2)['messages'][-1].content
         #return ans
         print('AI:',ans)
+        print(workflow.get_state(config=config2))
 
 
 if __name__=="__main__":
     print(chatting())
+
+chatbot = graph()
