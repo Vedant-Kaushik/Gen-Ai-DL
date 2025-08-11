@@ -39,7 +39,7 @@ if 'thread_id' not in st.session_state:
     st.session_state['thread_id'] = generate_thread_id()
 
 if 'chat_threads' not in st.session_state:
-    st.session_state['chat_threads'] = []
+    st.session_state['chat_threads'] = backend.retrieve_all_threads()
 
 add_thread(st.session_state['thread_id'])
 
@@ -61,13 +61,11 @@ for thread_id in st.session_state['chat_threads'][::-1]:
 
 # *********************************** Main UI ***********************************
 
-st.title("Chatbot\nBuilt on LangGraph")
-
+st.title(":green[Chatbot]")
+st.subheader("Built on :blue[LangGraph] ",divider=True)
 # Display message history
-if not st.session_state['message_history']:
-    st.markdown("**No messages to display.**")
-else:
-    for message in st.session_state['message_history']:
+
+for message in st.session_state['message_history']:
         with st.chat_message(message['role']):
             st.text(message['content'])
 
